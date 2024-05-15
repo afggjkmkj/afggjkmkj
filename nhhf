@@ -1,0 +1,14 @@
+            <div class="box-w">               <!--页尾-->
+				<div class="box-w-1">
+					<img src="img/b.jpg"/>
+					<div class="w-x">         <!--尾部文字-->
+					   <span>美丽邯郸</span>
+					   <p>客服热线：0312 8675555</p>
+				   </div>
+				</div>
+				<div class="w-z">            
+					<img src="img/二.jpg" />       <!--二维码图片-->
+					<a href="">返回<br>顶部</a>     <!--点击直接返回顶部-->
+				</div>
+			</div>
+
