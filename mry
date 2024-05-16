@@ -1,0 +1,79 @@
+.game_inner__left .ui_progress__icons .icon_bg.complete {
+			  background: url("https://assets.codepen.io/217233/ktkStageComplete.png");
+			}
+			.game_inner__left .ui_presses {
+			  font-size: 12px;
+			  opacity: 0.4;
+			}
+			.game_inner__left .center {
+			  position: absolute;
+			  left: 0;
+			  right: 0;
+			  margin: auto;
+			  top: 50%;
+			  transform: translateY(-50%);
+			  width: 390px;
+			}
+			.game_inner__left .center .player_sprite,
+			.game_inner__left .center .enemy_sprite {
+			  width: 150px;
+			  height: 150px;
+			  -webkit-animation: idle 0.5s steps(7, end) infinite;
+			          animation: idle 0.5s steps(7, end) infinite;
+			  transform: scale(5);
+			  -ms-interpolation-mode: nearest-neighbor;
+			      image-rendering: -moz-crisp-edges;
+			      image-rendering: pixelated;
+			}
+			.game_inner__left .center .player_sprite.pressed,
+			.game_inner__left .center .enemy_sprite.pressed {
+			  -webkit-animation: attack 0.15s steps(3, end);
+			          animation: attack 0.15s steps(3, end);
+			}
+			.game_inner__left .center .characters {
+			  width: 400px;
+			  margin: 80px auto;
+			}
+			.game_inner__left .center .characters .stand {
+			  width: 100%;
+			  height: 100px;
+			  background: #141627;
+			  border-radius: 100%;
+			  position: absolute;
+			  bottom: -20px;
+			  left: 9px;
+			}
+			.game_inner__left .center .characters .player {
+			  z-index: 1;
+			  position: relative;
+			  left: 10px;
+			  top: 60px;
+			  transition: all 1s 0.3s;
+			}
+			.game_inner__left .center .characters .player.run {
+			  left: 400px;
+			  opacity: 0;
+			}
+			.game_inner__left .center .characters .player .stats {
+			  position: absolute;
+			  left: -110px;
+			  text-align: left;
+			  transform: translateY(4px);
+			  font-size: 8px;
+			  -webkit-animation: health 2s infinite;
+			          animation: health 2s infinite;
+			}
+			.game_inner__left .center .characters .player .stats span {
+			  font-size: 6px;
+			  opacity: 0.75;
+			  display: block;
+			  padding-left: 24px;
+			  padding-top: 4px;
+			}
+			.game_inner__left .center .characters .player .stats div {
+			  margin-bottom: 10px;
+			}
+			.game_inner__left .center .characters .player .stats div img {
+			  position: relative;
+			  margin-right: 4px;
+			  top: 3px;
