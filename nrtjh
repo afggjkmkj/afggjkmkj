@@ -1,0 +1,25 @@
+ if (type == "weapons") {
+		        let w = this.upgrades[upgrade];
+		        this.gold -= w.cost;
+		        this.weaponDamage = w.damage;
+		        this.damage = this.strength * 1 + this.weaponDamage;
+		        this.weapon = w.names;
+		        w.bought = true;
+		
+		        let newCost = u.costIncreasePerLevel * u.level;
+		        u.cost = newCost;
+		      }
+		    },
+		
+		    exitShoppingPhase() {
+		      _this.stageComplete = false;
+		      this.shoppingPhase = !this.shoppingPhase;
+		      this.stage++;
+		      this.enemiesPerStage++;
+		      this.enemiesDefeated = 0;
+		      this.enemy = new Enemy(
+		        5 * (_this.enemiesDefeated + 1 * _this.stage),
+		        _this.enemyNames[Math.floor(Math.random() * _this.enemyNames.length)]
+		      );
+		      lowpassNode.frequency.value = 15000;
+		    },
