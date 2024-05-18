@@ -1,0 +1,2 @@
+QPushButton *stopButton = new QPushButton("Stop Loading", this);
+QObject::connect(stopButton, &QPushButton::clicked, webView, &QWebEngineView::stop);
