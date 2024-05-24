@@ -1,0 +1,7 @@
+@Test
+void testApacheGenerateCsv(){
+    // 使用自定义的CSV设置
+    ApacheCsvUtil.generateCsvWithConfig(HutooCsvUtil.generateUserList(), ApacheCsvUtil.customCsvFormat());
+    // 使用默认的CSV设置
+    ApacheCsvUtil.generateCsvWithConfig(HutooCsvUtil.generateUserList(), CSVFormat.DEFAULT);
+}
