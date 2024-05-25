@@ -1,0 +1,19 @@
+//html部分：
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>练习</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <ul>
+        <li class="current">首页</li>
+        <li>优课达学院</li>
+        <li>App下载</li>
+    </ul>
+</body>
+
+</html>
