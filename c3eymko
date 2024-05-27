@@ -1,0 +1,13 @@
+//这个路由控制规则设置对 /WeatherForecast路径请求由WeatherForecastController来处理。
+ 
+[ApiController] //Web API控制类添加的Attribute
+//设置路由规则
+[Route("[controller]")] // [controller]代表控制器名字，也就是WeatherForecast
+public class WeatherForecastController : ControllerBase
+{
+    [HttpGet] //作为操作方法的入口，因此下面方法名是什么都不影响程序
+    public IEnumerable<WeatherForecast> Get() //处理 /WeatherForecast的请求
+    {
+        //代码块
+    }
+}
