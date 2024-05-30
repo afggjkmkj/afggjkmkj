@@ -1,0 +1,6 @@
+include,include_once,require,require_once
+include():当使用该函数包含文件时，只有代码执行到include()函数时才将文件包含进来，发生错误时只出一个警告，继续向下执行。
+include_once():功能和include()相同，区别在于当重复调用同一文件时，程序只调用一次。
+require():require()与include()的区别在于require()执行如果发生错误，函数输出错误信息，并终止脚本的运行。
+使用require()函数包含文件时，只要程序一执行，立即调用文件，而includer()只有程序执行到该函数时才调用，
+require_once()：它的功能与require()相同，区别在于当重复调用同一文件时，程序只调用一次，
