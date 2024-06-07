@@ -1,0 +1,24 @@
+ function step() {
+    if (waves.length < waveCount) {
+      for (var i = 0; i < 10; i++) {
+        var wave = new PIXI.Sprite(waveTexture),
+          scale = 0.2 + Math.random() * 0.8;
+        wave.position.x = w / 2;
+        wave.position.y = h / 2;
+        wave.anchor.x = 0.5;
+        wave.anchor.y = 0.5;
+        wave.scale.x = scale * 10;
+        wave.scale.y = scale * 0.5;
+        wave.blendMode = PIXI.BLEND_MODES.SCREEN;
+        waves.push({
+          sprite: wave,
+          x: wave.position.x,
+          y: wave.position.y,
+          vx: 0,
+          vy: 0,
+          angle: Math.PI / 2 + Math.random() * Math.PI + Math.PI * 1.5,
+          speed: 0.01 + Math.random() / 10
+        });
+        stage.addChild(wave);
+      }
+    }
