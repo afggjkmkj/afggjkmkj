@@ -1,0 +1,57 @@
+        memcpy(data_buff, msg_buff, data_len);
+        u32 currDevSn=dev_sn;
+        if(app_id==m_currAppWork.appID)//自身设备
+        {
+            int deep=0;
+            while(currDevSn>0)
+            {
+                WorkDevStruct *pWorkNode=searchWorkNode(currDevSn);
+                if(pWorkNode==nullptr)
+                {
+                    qDebug()<<"pWorkNode==nullptr";
+                    return;
+                }
+                if(deep>0)
+                {
+                    msg_type=200;//转发指令为200
+                }
+                qDebug("down curr_sn=0x%08X, parent_sn=0x%08X", pWorkNode->devSn, pWorkNode->parentSn);
+                if(pWorkNode->parentSn==0)//网关设备
+                {   
+                    make_len=makeGwSendBuff(app_id, currDevSn, pack_num, pWorkNode->encrypt_index,
+                                                                msg_type, data_buff, data_len, make_buff, sizeof(make_buff));
+                    publishDownMsg(app_id, currDevSn, make_buff, make_len);//发布
+                    currDevSn=0;
+                }
+                else//节点设备
+                {
+                    make_len=makeNodeSendBuff(currDevSn, pack_num, msg_type, data_buff, data_len, make_buff, sizeof(make_buff));//组合节点数据
+                    if(make_len>0 && make_len<sizeof(data_buff))
+                    {
+                        data_len=make_len;
+                        memcpy(data_buff, make_buff, make_len);
+                        memset(make_buff, 0, sizeof(make_buff));
+                    }
+                    else
+                    {
+                        qDebug("error01, make_len=%u", make_len);
+                        return;
+                    }
+                    currDevSn=pWorkNode->parentSn;//父节点序列号
+                }
+                deep++;
+            }
+        }
+}
+ 
+ 
+//发送设备下行数据 
+void CenterMan::publishDownMsg(u32 app_id, u32 gw_sn, u8 *msg_buff, u16 msg_len)
+{
+    QString topic=QString(TOPIC_HEAD)+QString::asprintf("dev/sub/data/%u/%08X", app_id, gw_sn);
+    QByteArray msg_ba((char*)msg_buff, msg_len);
+//    qDebug()<<"000 pub topic="<<topic<<"\nmsg_ba="<<msg_ba.toHex(':');
+     emit sigMqttPushMessage(topic, msg_ba);
+}
+ 
+ 
