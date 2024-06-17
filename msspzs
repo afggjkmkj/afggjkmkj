@@ -1,0 +1,17 @@
+<!-- 秒杀商品展示 -->
+<view wx:if="{{productActiviType==0}}" class="activeBox"
+  style="background: url({{imgUrl}}/upload/20220608/kill-pro-back.png);background-size: 100% 100%;">
+  <view class="kill-leftBox">
+    <view class="product-priceBox">
+      <view style="height:35rpx;line-height: 35rpx;">
+        <text class="symbol-kill">￥</text>
+        <text class="price-kill">58.8</text>
+        <text class="throuth-kill">￥98</text>
+      </view>
+      <view class="num-kill displayBox">限量200份</view>
+    </view>
+    <view class="justNum-kill">
+      <text>已售198份</text><text
+        class="just-rightText">每人限购1份</text>
+    </view>
+  </view>
