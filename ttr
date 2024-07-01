@@ -1,0 +1,9 @@
+n = 0
+while n<3:
+    a, b = input(), input()
+    if a in ['admin','administrator'] and b=='012345':
+        print('登录成功')
+        break
+    else:
+        print("登录失败")
+        n += 1
