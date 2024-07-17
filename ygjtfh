@@ -1,0 +1,63 @@
+            self.swap_values()  
+            if self.eliminate_animals():  
+                self.step -= 1  
+            else:  
+                self.swap_values()  
+            self.value_swapped = False  
+            self.boom_sel = self.selected  
+            self.swap_sign = -1  
+            self.selected = [-1, -1]  
+  
+    def swap_values(self):  
+        """交换值。"""  
+        (xl, yl), (xc, yc) = self.last_sel, self.selected  
+        self.animal[xl][yl], self.animal[xc][yc] = self.animal[xc][yc], self.animal[xl][yl]  
+  
+    def load_text(self, text, position, txt_size, txt_color=(255, 255, 255)):  
+        """显示给定位置、大小和颜色的文本。"""  
+        my_font = pygame.font.SysFont("黑体", txt_size)  
+        text_screen = my_font.render(text, True, txt_color)  
+        self.screen.blit(text_screen, position)  
+  
+    def death_map(self):  
+        """检查是否没有有效的移动。"""  
+        for i in range(self.row, self.row + self.height):  
+            for j in range(self.col, self.col + self.width):  
+                if self.animal[i][j] != -1:  
+                    if self.animal[i][j] == self.animal[i][j + 1]:  
+                        if (self.animal[i][j] in [self.animal[i - 1][j - 1], self.animal[i + 1][j - 1]] and  
+                            self.animal[i][j - 1] != -1) or (  
+                                self.animal[i][j] in [self.animal[i - 1][j + 2], self.animal[i + 1][j + 2]] and  
+                                self.animal[i][j + 2] != -1):  
+                            self.death_sign = False  
+                            break                    if self.animal[i][j] == self.animal[i + 1][j]:  
+                        if (self.animal[i][j] in [self.animal[i - 1][j - 1], self.animal[i - 1][j + 1]] and  
+                            self.animal[i - 1][j] != -1) or (  
+                                self.animal[i][j] in [self.animal[i + 2][j - 1], self.animal[i + 2][j + 1]] and  
+                                self.animal[i + 2][j] != -1):  
+                            self.death_sign = False  
+                            break                    else:  
+                        if self.animal[i - 1][j - 1] == self.animal[i][j]:  
+                            if (self.animal[i][j] == self.animal[i - 1][j + 1] and self.animal[i - 1][j] != -1) or (  
+                                    self.animal[i][j] == self.animal[i + 1][j - 1] and self.animal[i][j - 1] != -1):  
+                                self.death_sign = False  
+                                break                        if self.animal[i][j] == self.animal[i + 1][j + 1]:  
+                            if (self.animal[i][j] == self.animal[i - 1][j + 1] and self.animal[i][j + 1] != -1) \  
+                                    or (self.animal[i][j] == self.animal[i + 1][j - 1] and self.animal[i + 1][j] != -1):  
+                                self.death_sign = False  
+                                break        if self.death_sign:  
+            delay(500)  
+            Element(Element.none_animal, (230, 150)).draw(self.screen)  
+            pygame.display.flip()  
+            delay(500)  
+            temp = [self.step, self.score, self.animal_num, self.ice_num, self.energy_num]  
+            self.reset_mode = True  
+            self.set_level_mode(self.level)  
+            self.step = temp[0]  
+            self.score = temp[1]  
+            self.animal_num = temp[2]  
+            self.ice_num = temp[3]  
+            self.energy_num = temp[4]  
+        else:  
+            self.death_sign = True  
+  
